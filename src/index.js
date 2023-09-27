@@ -11,7 +11,7 @@ const loader = document.getElementById('loader');
 
 
 
-const slim = new SlimSelect({
+const slim = new SlimSelect({              //zainicjowanie SLimSelect
     select: '#breed-select',
     placeholder: 'Select a breed...',
 })
