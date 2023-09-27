@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    -webkit-font-smooting: antialiased;
+    -moz-osx-font-smooting: grayscale;
+    background-color: darkgray;
+    color:darkslategray;
+    line-height: 1.5;
+}
+
+img {
+    display: block;
+    max-width: 40vw;
+    margin-top: 20vh;
+}
+
+.cat-info {
+    display: flex;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    width: 45vw;
+    margin-top: 20vh;
+    margin-left: 5vw;
+}
