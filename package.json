@@ -18,7 +18,9 @@
     "url": "https://github.com/mariusz-72/goit-js-hw-10/issues"
   },
   "dependencies": {
-    "modern-normalize": "^1.1.0"
+    "axios": "^1.5.1",
+    "modern-normalize": "^1.1.0",
+    "slim-select": "^2.6.0"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",

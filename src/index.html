@@ -4,12 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Homework 10</title>
+
+    <link rel=""stylesheet" href="./node_modules/slim-select/dist/slimselect.min.css"/>
+    <script src="./node_modules/slim-select/dist/slimselect.min.js"></script>
+    <link rel="stylesheet" href="./node_modules/notiflix/dist/notiflix-3.2.6.min.css"/>
+
   </head>
   <body>
-    <select class="breed-select"></select>
-    <p class="loader">Loading data, please wait...</p>
-    <p class="error">Oops! Something went wrong! Try reloading the page!</p>
-    <div class="cat-info"></div>
+    <select class="breed-select"  id="breed-select"></select>
+    <p class="loader"  id="loader">Loading data, please wait...</p>
+    <p class="error"   id="error">Oops! Something went wrong! Try reloading the page!</p>
+    <div class="cat-info">
+      <img id="cat-image"  src=""  alt="Cat"  />
+      <h2 id="cat-name"></h2>
+      <p id="cat-description"></p>
+      <p id="cat-temperament"></p>
+    </div>
 
     <script src="index.js" type="module"></script>
   </body>
