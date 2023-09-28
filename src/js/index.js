@@ -1,17 +1,22 @@
 
 import SlimSelect from 'slim-select';
+import 'slim-select/dist/slimselect.css';
+import Notiflix from 'notiflix';
+import 'notiflix/dist/notiflix-3.2.6.min.css';
+
 import { fetchBreeds, fetchCatByBreed } from './cat-api';
 
-window.addEventListener('DOMContentLoaded', () => {
+const catInfo = document.querySelector('.cat-info');
+let select;
 
-    const breedSelect = document.querySelector('#breed-select');
-    const catInfo = document.querySelector('.cat-info');
+    //const breedSelect = document.querySelector('#breed-select');
+    //const catInfo = document.querySelector('.cat-info');
 
 
-    const slim = new SlimSelect({
-        select: '.breed-select',
-        placeholder: 'Select a breed..',
-    });
+    //const slim = new SlimSelect({
+    //  select: '#breed-select',
+    //  placeholder: 'Select a breed..',
+    //});
 
 
     fetchBreeds((error, breeds) => {
@@ -45,6 +50,6 @@ window.addEventListener('DOMContentLoaded', () => {
     <p>${breed.temperament}</p>
     `;
     }
-});
+
 
 
