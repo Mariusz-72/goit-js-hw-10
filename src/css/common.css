@@ -6,15 +6,15 @@ body {
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     -webkit-font-smooting: antialiased;
     -moz-osx-font-smooting: grayscale;
-    background-color: darkgray;
+    background-color: rgb(156, 121, 121);
     color:darkslategray;
     line-height: 1.5;
 }
 
 img {
     display: block;
-    max-width: 40vw;
-    margin-top: 20vh;
+    max-width: 49vw;
+    margin-top: 2vh;
 }
 
 .cat-info {
@@ -24,7 +24,7 @@ img {
 .description {
     display: flex;
     flex-direction: column;
-    width: 45vw;
+    width: 40vw;
     margin-top: 20vh;
     margin-left: 5vw;
 }
