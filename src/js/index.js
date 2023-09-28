@@ -2,9 +2,9 @@
 import SlimSelect from 'slim-select';
 import { fetchBreeds, fetchCatByBreed } from './cat-api';
 
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', () => {
 
-    const breedSelect = document.querySelector('breed-select');
+    const breedSelect = document.querySelector('.breed-select');
     const catInfo = document.querySelector('.cat-info');
 
 
