@@ -1,6 +1,5 @@
 
-import Notiflix from 'notiflix';
-import 'notiflix/dist/notiflix-3.2.6.min.css';
+
 import axios from 'axios';
 axios.defaults.headers.common['x-api-key'] = 'live_iPaBzyy1iOjvPQNHzNKNExHWu1HC402dvsZ3klFHj2GCZBHTFhAkZ1tIADh4TvP';
 
@@ -22,13 +21,10 @@ function fetchCatByBreed(breedId, callback) {
         .get('https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}')
         .then((response) => {
             const catData = response.data[0];
-            const { url, breed, description, temperament } = catData;
+            const { url, breeds} = catData;
             const catInfo = {
                 url,
-                name: breed.name,
-                description,
-                temperament,
-
+                breed: breeds[0],
             };
             callback(null, catInfo);
         })
