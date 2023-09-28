@@ -2,15 +2,11 @@
 import Notiflix from 'notiflix';
 import 'notiflix/dist/notiflix-3.2.6.min.css';
 import axios from 'axios';
-
-
-
-import axios from 'axios';
 axios.defaults.headers.common['x-api-key'] = 'live_iPaBzyy1iOjvPQNHzNKNExHWu1HC402dvsZ3klFHj2GCZBHTFhAkZ1tIADh4TvP';
 
 function fetchBreeds(callback) {                              //funkcja ładująca wybraną rasę
      axios
-        .get('http://api.thecatapi.com/v1/breeds')
+        .get('https://api.thecatapi.com/v1/breeds')
         .then((response) => {
             const breeds = response.data;
             callback(null, breeds);
@@ -23,7 +19,7 @@ function fetchBreeds(callback) {                              //funkcja ładują
 
 function fetchCatByBreed(breedId, callback) {
     axios
-        .get('https://api.thecatapi.com/v1/images/serch?breed_ids=${breedId}')
+        .get('https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}')
         .then((response) => {
             const catData = response.data[0];
             const { url, breed, description, temperament } = catData;
