@@ -18,10 +18,10 @@ function fetchBreeds(callback) {                              //funkcja ładują
 
 function fetchCatByBreed(breedId, callback) {
     axios
-        .get('https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}')
+        .get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`)
         .then((response) => {
             const catData = response.data[0];
-            const { url, breeds} = catData;
+            const { url, breed} = catData;
             const catInfo = {
                 url,
                 breed: breeds[0],
