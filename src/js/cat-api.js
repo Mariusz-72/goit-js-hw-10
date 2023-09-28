@@ -9,33 +9,26 @@ axios.defaults.headers.common['x-api-key'] =
 
 function fetchBreeds(callback) {
   //funkcja ładująca wybraną rasę
-  axios
+    return axios
     .get('https://api.thecatapi.com/v1/breeds')
     .then(response => {
-        const breeds = response.data;
-        console.log('Breeds:', breeds); 
-      callback(null, breeds);
+        return response.data;
+       
     })
 
     .catch(error => {
-      callback(error, null);
+        console.log('fetchBreeds error', error.response);
+        return Promise.reject(error);
     });
 }
 
 function fetchCatByBreed(breedId, callback) {
-  axios
+  return axios
     .get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`)
-    .then(response => {
-      const catData = response.data[0];
-      const { url, breed } = catData;
-      const catInfo = {
-        url,
-        breed: breed[0],
-      };
-      callback(null, catInfo);
-    })
-    .catch(error => {
-      callback(error, null);
+    .then(response => response.data[0])
+      .catch(error => {
+          console.log('fetchCatByBreed error', error.response);
+          return Promise.reject(error);
     });
 }
 export { fetchBreeds, fetchCatByBreed };

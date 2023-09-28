@@ -12,7 +12,7 @@ let select;
 Notiflix.Loading.standard('Loading...', {
     backgroundColor: 'rgba(0,0,0,0.8)',
 });
-window.addEventListener.apply('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', () => {
     Notiflix.Loading.standard('Loading data, please wait...', {
         backgroundColor: 'rgba(0,0,0,0.8)',
     });
@@ -36,7 +36,7 @@ window.addEventListener.apply('DOMContentLoaded', () => {
             Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
         });
 
-});
+
 
 
 
@@ -50,24 +50,29 @@ window.addEventListener.apply('DOMContentLoaded', () => {
     //  placeholder: 'Select a breed..',
     //});
 
-select.on('change', () => {
-    const selectBreedId = select.selected();
-    if (selectBreedId) {
-        fetchCatByBreed(selectedBreedId)
-            .then(catInfo => {
-                updateCatInfo(catInfo);
-            })
-            .catch(error => {
-                Notiflix.Notify.failure(
-                    'Oops! Something went wrong! Try reloading the page!');
-            });
-    }
+    select.onChange = () => {
+        const selectedBreedId = select.selected();
+        if (selectedBreedId) {
+            fetchCatByBreed(selectedBreedId)
+                .then(catData => {
+                    updateCatInfo(catData);
+                })
+                .catch(error => {
+                
+                    Notiflix.Notify.failure(
+                        'Oops! Something went wrong! Try reloading the page!');
+                });
+        }
+    };
+
 });
+    
 
 
 
-    function updateCatInfo(catInfo) {
-        const { url, breed } = catInfo;
+
+    function updateCatInfo(catData) {
+        const { url, breed } = catData;
         catInfo.innerHTML = `
     <img src="${url}" alt="${breed.name}" />
     <div class="description">
