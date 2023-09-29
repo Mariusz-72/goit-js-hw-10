@@ -12,59 +12,64 @@ let select;                                                             // zmien
 Notiflix.Loading.standard('Loading...', {       // wyświetlenie komunikatu "loadnig"
     backgroundColor: 'rgba(0,0,0,0.8)',
 });
-window.addEventListener('DOMContentLoaded', () => {                                // ładowanie całej strony
-    Notiflix.Loading.standard('Loading data, please wait...', {          // komunikat o ładowaniu strony
-        backgroundColor: 'rgba(0,0,0,0.8)',
-    });
+window.addEventListener('DOMContentLoaded', () => {
+  // ładowanie całej strony
+  Notiflix.Loading.standard('Loading data, please wait...', {
+    // komunikat o ładowaniu strony
+    backgroundColor: 'rgba(0,0,0,0.8)',
+  });
 
-    select = new SlimSelect({                                               // utworzenie listy rozwijanej
-        select: '.breed-select',
-    });
-
-    fetchBreeds()                                                                      // pobranie danych o rasach
-        .then(breeds => {
-            Notiflix.Loading.remove();                                                 // usunięcie komunikatu "loading"
-            select.setData(                                                           // wypełnienie listy rozwijanej danymi o rasach
-                breeds.map(breed => ({
-                    text: breed.name,
-                    value: breed.id,
-                }))
-            );
-        })
-        .catch(error => {
-            Notiflix.Loading.remove();                                                                // usunięcie napisu "loading" i wyświetlenie komunikatu o błędzie
-            Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
-        });
-
-
-    select.onChange = () => {                                                                   // nasłuch na zmianę w liście rozwijanej
-        const selectedBreedId = select.selected();                                 // pobranie wybranej rasy kota
-        if (selectedBreedId) {       
-            fetchCatByBreed(selectedBreedId)                                  // mająd ID pobieramy info o danej rasie
-                .then(catData => {
-                    updateCatInfo(catData);                                           // wyświetlenie info o kocie na stronie
-                })
-                .catch(error => {
-                
-                    Notiflix.Notify.failure(                                           // wyświetlenie komunikatu o błędzie
-                        'Oops! Something went wrong! Try reloading the page!');
-                });
+  select = new SlimSelect({
+    select: '.breed-select',
+    events: {
+      afterChange: data => {
+        const selectedBreedId = data[0].value;
+        if (selectedBreedId) {
+          fetchCatByBreed(selectedBreedId)
+            .then(catData => {
+              console.log(catData);
+              updateCatInfo(catData);
+            })
+            .catch(error => {
+              Notiflix.Notify.failure(
+                'Oops! Something goes wrong! Try to reload this page!'
+              );
+            });
         }
-    };
-});
-    
+      },
+    },
+  });
 
-    function updateCatInfo(catData) {                                          // funkcja aktualizująca info o kocie na stronie
-        const { url, breed } = catData;
-        catInfo.innerHTML = `
-    <img src="${url}" alt="${breed.name}" />
+  fetchBreeds() // pobranie danych o rasach
+    .then(breeds => {
+      Notiflix.Loading.remove(); // usunięcie komunikatu "loading"
+      select.setData(
+        // wypełnienie listy rozwijanej danymi o rasach
+        breeds.map(breed => ({
+          text: breed.name,
+          value: breed.id,
+        }))
+      );
+    })
+    .catch(error => {
+      Notiflix.Loading.remove(); // usunięcie napisu "loading" i wyświetlenie komunikatu o błędzie
+      Notiflix.Notify.failure(
+        'Oops! Something went wrong! Try reloading the page!'
+      );
+    });
+
+  function updateCatInfo(catData) {
+    // funkcja aktualizująca info o kocie na stronie
+    const { url, breeds } = catData;
+    catInfo.innerHTML = `
+    <img src="${url}" alt="${breeds.name}" />
     <div class="description">
-    <h2>${breed.name}</h2>
-    <p>${breed.description}</p>
-    <p>${breed.temperament}</p>
+    <h2>${breeds.name}</h2>
+    <p>${breeds.description}</p>
+    <p>${breeds.temperament}</p>
     </div>
     `;
-    }
-
+  }
+});
 
 
