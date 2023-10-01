@@ -60,15 +60,20 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function updateCatInfo(catData) {
     // funkcja aktualizująca info o kocie na stronie
-    const { url, breeds } = catData;
-    catInfo.innerHTML = `
+      const { url, breeds } = catData;
+      
+      if (breeds.length > 0) {
+          const { name, description, temperament } = breeds[0];
+    
+          catInfo.innerHTML = `
     <img src="${url}" alt="${breeds.name}" />
     <div class="description">
-    <h2>${breeds.name}</h2>
-    <p>${breeds.description}</p>
-    <p>${breeds.temperament}</p>
+    <h2>${name}</h2>
+    <p>${description}</p>
+    <p>${temperament}</p>
     </div>
     `;
+      }
   }
 });
 

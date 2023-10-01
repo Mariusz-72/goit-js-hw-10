@@ -4,7 +4,8 @@ import Notiflix from 'notiflix';                       // import biblioteki Noti
 import 'notiflix/dist/notiflix-3.2.6.min.css';
 
 import axios from 'axios';                                // import axiosa - biblioteki do odbsługi żądań http
-axios.defaults.headers.common['x-api-key'] ='live_iPaBzyy1iOjvPQNHzNKNExHWu1HC402dvsZ3klFHj2GCZBHTFhAkZ1tIADh4TvP';
+axios.defaults.headers.common['x-api-key'] =
+  'live_gQPE7aYHC2JxC4HJyzOTAX1mVK6khrVWlpVjNkVhfmBPwZbTUygmmJXQmL0FI4FQ';
 
 function fetchBreeds(callback) {                                   // deklaracja funkcji do obsługi danych z API
     return axios
