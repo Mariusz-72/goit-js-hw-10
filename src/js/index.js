@@ -9,9 +9,11 @@ import { fetchBreeds, fetchCatByBreed } from './cat-api';
 const catInfo = document.querySelector('.cat-info');         // wskazanie miejsca na stronie gdzie będą wyświetlane informacje o kotach
 let select;                                                             // zmienna do obsługi listy
 
-Notiflix.Loading.standard('Loading...', {       // wyświetlenie komunikatu "loadnig"
-    backgroundColor: 'rgba(0,0,0,0.8)',
-});
+ Notiflix.Loading.standard('Loading...', {
+   // wyświetlenie komunikatu "loadnig"
+   backgroundColor: 'rgba(0,0,0,0.8)',
+ });  
+
 window.addEventListener('DOMContentLoaded', () => {
   // ładowanie całej strony
   Notiflix.Loading.standard('Loading data, please wait...', {
@@ -24,11 +26,18 @@ window.addEventListener('DOMContentLoaded', () => {
     events: {
       afterChange: data => {
         const selectedBreedId = data[0].value;
-        if (selectedBreedId) {
+
+            if (selectedBreedId) {
+            Notiflix.Loading.standard('Loading data, please wait...', {
+              // komunikat o ładowaniu strony
+              backgroundColor: 'rgba(0,0,0,0.8)',
+            });
           fetchCatByBreed(selectedBreedId)
             .then(catData => {
               console.log(catData);
-              updateCatInfo(catData);
+              
+                updateCatInfo(catData);
+                Notiflix.Loading.remove();
             })
             .catch(error => {
               Notiflix.Notify.failure(
@@ -60,12 +69,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function updateCatInfo(catData) {
     // funkcja aktualizująca info o kocie na stronie
-      const { url, breeds } = catData;
-      
-      if (breeds.length > 0) {
-          const { name, description, temperament } = breeds[0];
-    
-          catInfo.innerHTML = `
+    const { url, breeds } = catData;
+
+    if (breeds.length > 0) {
+      const { name, description, temperament } = breeds[0];
+
+      catInfo.innerHTML = `
     <img src="${url}" alt="${breeds.name}" />
     <div class="description">
     <h2>${name}</h2>
@@ -73,7 +82,7 @@ window.addEventListener('DOMContentLoaded', () => {
     <p>${temperament}</p>
     </div>
     `;
-      }
+    }
   }
 });
 
